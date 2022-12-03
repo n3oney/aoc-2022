@@ -1,0 +1,29 @@
+name: Test answer correctness
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  CARGO_TERM_COLOR: always
+  ENV: test
+
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          default: true
+          profile: minimal
+      - name: Build
+        run: cargo build --verbose
+      - name: Test
+        run: target/debug/tester
