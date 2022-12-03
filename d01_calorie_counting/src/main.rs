@@ -2,6 +2,11 @@ fn main() {
     let input_bytes = include_bytes!("../input");
     let input = String::from_utf8_lossy(input_bytes);
 
+    let raw_output = match std::env::var("ENV") {
+        Ok(v) if v == "test" => true,
+        _ => false,
+    };
+
     let mut top = [0u32; 3];
 
     let mut acc = 0;
@@ -29,9 +34,14 @@ fn main() {
         }
     }
 
-    println!("Most Calories carried by one Elf: {}", top[0]);
-    println!(
-        "Sum of Calories carried by all Elves: {}",
-        top.iter().sum::<u32>()
-    );
+    if raw_output {
+        println!("{}", top[0]);
+        println!("{}", top.iter().sum::<u32>());
+    } else {
+        println!("Most Calories carried by one Elf: {}", top[0]);
+        println!(
+            "Sum of Calories carried by all Elves: {}",
+            top.iter().sum::<u32>()
+        );
+    }
 }

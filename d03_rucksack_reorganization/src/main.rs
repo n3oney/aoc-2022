@@ -16,6 +16,11 @@ fn main() {
     let input_bytes = include_bytes!("../input");
     let input = String::from_utf8_lossy(input_bytes);
 
+    let raw_output = match std::env::var("ENV") {
+        Ok(v) if v == "test" => true,
+        _ => false,
+    };
+
     let mut p1_sum = 0;
 
     'rucksack_loop: for rucksack in input.split("\n") {
@@ -50,11 +55,6 @@ fn main() {
             if set.insert(char) {
                 if let Some(old_value) = map.insert(char, 1) {
                     if old_value == 2 {
-                        println!(
-                            "The badge is {} with prio {}",
-                            char,
-                            char_to_priority(&char)
-                        );
                         p2_sum += char_to_priority(&char);
                         continue 'rucksack_loop;
                     } else {
@@ -65,6 +65,11 @@ fn main() {
         }
     }
 
-    println!("Sum of priorities for part 1: {}", p1_sum);
-    println!("Sum of priorities for part 2: {}", p2_sum);
+    if raw_output {
+        println!("{}", p1_sum);
+        println!("{}", p2_sum);
+    } else {
+        println!("Sum of priorities for part 1: {}", p1_sum);
+        println!("Sum of priorities for part 2: {}", p2_sum);
+    }
 }

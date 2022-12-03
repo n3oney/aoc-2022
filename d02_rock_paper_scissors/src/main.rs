@@ -53,6 +53,11 @@ fn main() {
     let input_bytes = include_bytes!("../input");
     let input = String::from_utf8_lossy(input_bytes);
 
+    let raw_output = match std::env::var("ENV") {
+        Ok(v) if v == "test" => true,
+        _ => false,
+    };
+
     let mut score_p1: u32 = 0;
     let mut score_p2: u32 = 0;
 
@@ -87,6 +92,11 @@ fn main() {
         }
     }
 
-    println!("Final score for part 1: {}", score_p1);
-    println!("Final score for part 2: {}", score_p2);
+    if raw_output {
+        println!("{}", score_p1);
+        println!("{}", score_p2);
+    } else {
+        println!("Final score for part 1: {}", score_p1);
+        println!("Final score for part 2: {}", score_p2);
+    }
 }
