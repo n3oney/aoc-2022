@@ -2,4 +2,5 @@
 members = [
   "d01_calorie_counting",
   "d02_rock_paper_scissors",
+  "d03_rucksack_reorganization",
 ]
