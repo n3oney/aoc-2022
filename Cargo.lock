@@ -15,5 +15,9 @@ name = "d03_rucksack_reorganization"
 version = "0.1.0"
 
 [[package]]
+name = "d04_camp_cleanup"
+version = "0.1.0"
+
+[[package]]
 name = "tester"
 version = "0.1.0"
