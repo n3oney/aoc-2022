@@ -19,5 +19,9 @@ name = "d04_camp_cleanup"
 version = "0.1.0"
 
 [[package]]
+name = "d05_supply_stacks"
+version = "0.1.0"
+
+[[package]]
 name = "tester"
 version = "0.1.0"
